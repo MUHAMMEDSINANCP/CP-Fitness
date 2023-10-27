@@ -70,7 +70,7 @@ class _TodaySleepScheduleRowState extends State<TodaySleepScheduleRow> {
                     widget.sObj["duration"].toString(),
                     style: TextStyle(
                         color: TColor.gray,
-                        fontSize: 14,
+                        fontSize: 12,
                         fontWeight: FontWeight.w500),
                   ),
                 ],
@@ -110,6 +110,10 @@ class _TodaySleepScheduleRowState extends State<TodaySleepScheduleRow> {
                       onTap: () => setState(() => positive = !positive),
                       iconsTappable: false,
                       wrapperBuilder: (context, global, child) {
+                        Color backgroundColor = positive
+                            ? TColor.primaryColor1
+                            : Colors.white; // Choose colors based on the state.
+
                         return Stack(
                           alignment: Alignment.center,
                           children: [
@@ -119,8 +123,11 @@ class _TodaySleepScheduleRowState extends State<TodaySleepScheduleRow> {
                                 height: 30.0,
                                 child: DecoratedBox(
                                   decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                        colors: TColor.secondaryG),
+                                    border: Border.all(color: Colors.black12),
+                                    gradient: LinearGradient(colors: [
+                                      backgroundColor,
+                                      backgroundColor
+                                    ]), // Use the chosen color here.
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(50.0)),
                                   ),
@@ -130,11 +137,16 @@ class _TodaySleepScheduleRowState extends State<TodaySleepScheduleRow> {
                         );
                       },
                       foregroundIndicatorBuilder: (context, global) {
+                        Color foregroundColor = positive
+                            ? Colors.white
+                            : TColor
+                                .secondaryColor1; // Choose colors based on th
                         return SizedBox.fromSize(
                           size: const Size(10, 10),
                           child: DecoratedBox(
                             decoration: BoxDecoration(
-                              color: TColor.white,
+                              color:
+                                  foregroundColor, // Use the chosen color here.
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(50.0)),
                               boxShadow: const [

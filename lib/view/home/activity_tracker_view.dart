@@ -13,7 +13,7 @@ class ActivityTrackerView extends StatefulWidget {
 }
 
 class _ActivityTrackerViewState extends State<ActivityTrackerView> {
-    int touchedIndex = -1;
+  int touchedIndex = -1;
 
   List latestArr = [
     {
@@ -27,6 +27,7 @@ class _ActivityTrackerViewState extends State<ActivityTrackerView> {
       "time": "About 3 hours ago"
     },
   ];
+  String selectedValue = "Weekly";
 
   @override
   Widget build(BuildContext context) {
@@ -143,16 +144,17 @@ class _ActivityTrackerViewState extends State<ActivityTrackerView> {
                       height: 15,
                     ),
                     const Row(
+                      mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
                           child: TodayTargetCell(
                             icon: "assets/img/water.png",
                             value: "8L",
-                            title: "Water Intake",
+                            title: "Water Intakes",
                           ),
                         ),
                         SizedBox(
-                          width: 15,
+                          width: 10,
                         ),
                         Expanded(
                           child: TodayTargetCell(
@@ -188,17 +190,25 @@ class _ActivityTrackerViewState extends State<ActivityTrackerView> {
                       ),
                       child: DropdownButtonHideUnderline(
                         child: DropdownButton(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(30)),
+                          dropdownColor: TColor.primaryColor1,
+                          value: selectedValue,
                           items: ["Weekly", "Monthly"]
                               .map((name) => DropdownMenuItem(
                                     value: name,
                                     child: Text(
                                       name,
                                       style: TextStyle(
-                                          color: TColor.gray, fontSize: 14),
+                                          color: TColor.white, fontSize: 14),
                                     ),
                                   ))
                               .toList(),
-                          onChanged: (value) {},
+                          onChanged: (val) {
+                            setState(() {
+                              selectedValue = val!;
+                            });
+                          },
                           icon: Icon(Icons.expand_more, color: TColor.white),
                           hint: Text(
                             "Weekly",
@@ -209,23 +219,20 @@ class _ActivityTrackerViewState extends State<ActivityTrackerView> {
                       )),
                 ],
               ),
-
               SizedBox(
                 height: media.width * 0.05,
               ),
-
               Container(
                 height: media.width * 0.5,
-                padding: const EdgeInsets.symmetric(vertical: 15 , horizontal: 0),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 0),
                 decoration: BoxDecoration(
                     color: TColor.white,
                     borderRadius: BorderRadius.circular(15),
                     boxShadow: const [
                       BoxShadow(color: Colors.black12, blurRadius: 3)
                     ]),
-                    child: BarChart(
-                      
-                      BarChartData(
+                child: BarChart(BarChartData(
                   barTouchData: BarTouchData(
                     touchTooltipData: BarTouchTooltipData(
                       tooltipBgColor: Colors.grey,
@@ -293,10 +300,10 @@ class _ActivityTrackerViewState extends State<ActivityTrackerView> {
                   ),
                   titlesData: FlTitlesData(
                     show: true,
-                    rightTitles:  AxisTitles(
+                    rightTitles: AxisTitles(
                       sideTitles: SideTitles(showTitles: false),
                     ),
-                    topTitles:  AxisTitles(
+                    topTitles: AxisTitles(
                       sideTitles: SideTitles(showTitles: false),
                     ),
                     bottomTitles: AxisTitles(
@@ -306,7 +313,7 @@ class _ActivityTrackerViewState extends State<ActivityTrackerView> {
                         reservedSize: 38,
                       ),
                     ),
-                    leftTitles:  AxisTitles(
+                    leftTitles: AxisTitles(
                       sideTitles: SideTitles(
                         showTitles: false,
                       ),
@@ -316,12 +323,9 @@ class _ActivityTrackerViewState extends State<ActivityTrackerView> {
                     show: false,
                   ),
                   barGroups: showingGroups(),
-                  gridData:  FlGridData(show: false),
-                )
-                    
-                  ),
+                  gridData: FlGridData(show: false),
+                )),
               ),
-              
               SizedBox(
                 height: media.width * 0.05,
               ),
@@ -375,28 +379,28 @@ class _ActivityTrackerViewState extends State<ActivityTrackerView> {
     Widget text;
     switch (value.toInt()) {
       case 0:
-        text =  Text('Sun', style: style);
+        text = Text('Sun', style: style);
         break;
       case 1:
-        text =  Text('Mon', style: style);
+        text = Text('Mon', style: style);
         break;
       case 2:
-        text =  Text('Tue', style: style);
+        text = Text('Tue', style: style);
         break;
       case 3:
-        text =  Text('Wed', style: style);
+        text = Text('Wed', style: style);
         break;
       case 4:
-        text =  Text('Thu', style: style);
+        text = Text('Thu', style: style);
         break;
       case 5:
-        text =  Text('Fri', style: style);
+        text = Text('Fri', style: style);
         break;
       case 6:
-        text =  Text('Sat', style: style);
+        text = Text('Sat', style: style);
         break;
       default:
-        text =  Text('', style: style);
+        text = Text('', style: style);
         break;
     }
     return SideTitleWidget(
@@ -405,44 +409,52 @@ class _ActivityTrackerViewState extends State<ActivityTrackerView> {
       child: text,
     );
   }
-   List<BarChartGroupData> showingGroups() => List.generate(7, (i) {
+
+  List<BarChartGroupData> showingGroups() => List.generate(7, (i) {
         switch (i) {
           case 0:
-            return makeGroupData(0, 5, TColor.primaryG , isTouched: i == touchedIndex);
+            return makeGroupData(0, 5, TColor.primaryG,
+                isTouched: i == touchedIndex);
           case 1:
-            return makeGroupData(1, 10.5, TColor.secondaryG, isTouched: i == touchedIndex);
+            return makeGroupData(1, 10.5, TColor.secondaryG,
+                isTouched: i == touchedIndex);
           case 2:
-            return makeGroupData(2, 5, TColor.primaryG , isTouched: i == touchedIndex);
+            return makeGroupData(2, 5, TColor.primaryG,
+                isTouched: i == touchedIndex);
           case 3:
-            return makeGroupData(3, 7.5, TColor.secondaryG, isTouched: i == touchedIndex);
+            return makeGroupData(3, 7.5, TColor.secondaryG,
+                isTouched: i == touchedIndex);
           case 4:
-            return makeGroupData(4, 15, TColor.primaryG , isTouched: i == touchedIndex);
+            return makeGroupData(4, 15, TColor.primaryG,
+                isTouched: i == touchedIndex);
           case 5:
-            return makeGroupData(5, 5.5, TColor.secondaryG, isTouched: i == touchedIndex);
+            return makeGroupData(5, 5.5, TColor.secondaryG,
+                isTouched: i == touchedIndex);
           case 6:
-            return makeGroupData(6, 8.5, TColor.primaryG , isTouched: i == touchedIndex);
+            return makeGroupData(6, 8.5, TColor.primaryG,
+                isTouched: i == touchedIndex);
           default:
             return throw Error();
         }
       });
 
-    BarChartGroupData makeGroupData(
+  BarChartGroupData makeGroupData(
     int x,
     double y,
-    List<Color> barColor,
-     {
+    List<Color> barColor, {
     bool isTouched = false,
-    
     double width = 22,
     List<int> showTooltips = const [],
   }) {
-    
     return BarChartGroupData(
       x: x,
       barRods: [
         BarChartRodData(
           toY: isTouched ? y + 1 : y,
-          gradient: LinearGradient(colors: barColor, begin: Alignment.topCenter, end: Alignment.bottomCenter ),
+          gradient: LinearGradient(
+              colors: barColor,
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter),
           width: width,
           borderSide: isTouched
               ? const BorderSide(color: Colors.green)
@@ -457,5 +469,5 @@ class _ActivityTrackerViewState extends State<ActivityTrackerView> {
       showingTooltipIndicators: showTooltips,
     );
   }
-
 }
+ 

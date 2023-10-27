@@ -69,9 +69,39 @@ class _MealFoodDetailsViewState extends State<MealFoodDetailsView> {
       "time": "20mins",
       "kcal": "120kCal"
     },
+    {
+      "name": "Blueberry Pancake",
+      "image": "assets/img/f_1.png",
+      "b_image": "assets/img/pancake_1.png",
+      "size": "Medium",
+      "time": "30mins",
+      "kcal": "230kCal"
+    },
+    {
+      "name": "Salmon Nigiri",
+      "image": "assets/img/f_2.png",
+      "b_image": "assets/img/nigiri.png",
+      "size": "Medium",
+      "time": "20mins",
+      "kcal": "120kCal"
+    },
   ];
 
   List recommendArr = [
+    {
+      "name": "Honey Pancake",
+      "image": "assets/img/rd_1.png",
+      "size": "Easy",
+      "time": "30mins",
+      "kcal": "180kCal"
+    },
+    {
+      "name": "Canai Bread",
+      "image": "assets/img/m_4.png",
+      "size": "Easy",
+      "time": "20mins",
+      "kcal": "230kCal"
+    },
     {
       "name": "Honey Pancake",
       "image": "assets/img/rd_1.png",
@@ -196,7 +226,8 @@ class _MealFoodDetailsViewState extends State<MealFoodDetailsView> {
               height: media.width * 0.05,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -228,9 +259,10 @@ class _MealFoodDetailsViewState extends State<MealFoodDetailsView> {
               height: media.width * 0.05,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5),
               child: Text(
-                "Recommendation\nfor Diet",
+                "Recommendation for Diet",
                 style: TextStyle(
                     color: TColor.black,
                     fontSize: 16,
@@ -255,7 +287,8 @@ class _MealFoodDetailsViewState extends State<MealFoodDetailsView> {
               height: media.width * 0.05,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5),
               child: Text(
                 "Popular",
                 style: TextStyle(
@@ -285,6 +318,17 @@ class _MealFoodDetailsViewState extends State<MealFoodDetailsView> {
                     },
                     child: PopularMealRow(
                       mObj: fObj,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => FoodInfoDetailsView(
+                              dObj: fObj,
+                              mObj: widget.eObj,
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   );
                 }),

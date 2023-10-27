@@ -80,7 +80,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                   child: CircularProgressIndicator(
                     color: TColor.primaryColor1,
                     value: (selectPage + 1) / 4,
-                    strokeWidth: 2,
+                    strokeWidth: 3,
                   ),
                 ),
                 Container(
@@ -104,13 +104,13 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                             duration: const Duration(milliseconds: 600),
                             curve: Curves.bounceInOut);
 
+                        // if you dont want an animation so you can use the below way of navigating
                         // controller.jumpToPage(selectPage);
 
                         setState(() {});
                       } else {
                         // Open Welcome Screen
-                        print("Open Welcome Screen");
-                        Navigator.push(
+                        Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const SignUpView()));
@@ -120,7 +120,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

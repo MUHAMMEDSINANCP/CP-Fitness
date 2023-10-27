@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_animation_progress_bar/simple_animation_progress_bar.dart';
 
 import '../common/colo_extension.dart';
+import '../view/home/finished_workout_view.dart';
 
 class WorkoutRow extends StatelessWidget {
   final Map wObj;
@@ -67,7 +68,14 @@ class WorkoutRow extends StatelessWidget {
               ],
             )),
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const FinishedWorkoutView(),
+                    ),
+                  );
+                },
                 icon: Image.asset(
                   "assets/img/next_icon.png",
                   width: 30,

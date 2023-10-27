@@ -6,6 +6,8 @@ import '../../common_widget/setting_row.dart';
 import '../../common_widget/title_subtitle_cell.dart';
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 
+import '../home/activity_tracker_view.dart';
+
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
 
@@ -122,12 +124,12 @@ class _ProfileViewState extends State<ProfileView> {
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
                       onPressed: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => const ActivityTrackerView(),
-                        //   ),
-                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ActivityTrackerView(),
+                          ),
+                        );
                       },
                     ),
                   )
@@ -158,7 +160,7 @@ class _ProfileViewState extends State<ProfileView> {
                   ),
                   Expanded(
                     child: TitleSubtitleCell(
-                      title: "22yo",
+                      title: "22",
                       subtitle: "Age",
                     ),
                   ),
@@ -253,11 +255,11 @@ class _ProfileViewState extends State<ProfileView> {
                             ),
                             CustomAnimatedToggleSwitch<bool>(
                               current: positive,
-                              values: [false, true],
+                              values: const [false, true],
                               dif: 0.0,
-                              indicatorSize: Size.square(30.0),
+                              indicatorSize: const Size.square(25.0),
                               animationDuration:
-                                  const Duration(milliseconds: 200),
+                                  const Duration(milliseconds: 500),
                               animationCurve: Curves.linear,
                               onChanged: (b) => setState(() => positive = b),
                               iconBuilder: (context, local, global) {
@@ -271,20 +273,31 @@ class _ProfileViewState extends State<ProfileView> {
                                   alignment: Alignment.center,
                                   children: [
                                     Positioned(
-                                        left: 10.0,
-                                        right: 10.0,
-                                        
-                                        height: 30.0,
-                                        child: DecoratedBox(
-                                          decoration: BoxDecoration(
-                                             gradient: LinearGradient(
-                                                colors: TColor.secondaryG),
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                                    Radius.circular(50.0)),
-                                          ),
-                                        )),
+                                      left: 0.0,
+                                      right: 0.0,
+                                      height: 25.0,
+                                      child: DecoratedBox(
+                                        decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                              colors: TColor.secondaryG),
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(50.0)),
+                                        ),
+                                      ),
+                                    ),
                                     child,
+                                    Positioned(
+                                      left: positive ? 6 : 27,
+                                      child: Icon(
+                                        positive
+                                            ? Icons.notifications_off
+                                            : Icons.notifications_on,
+                                        size: 20,
+                                        color: positive
+                                            ? Colors.white
+                                            : Colors.white,
+                                      ),
+                                    ),
                                   ],
                                 );
                               },
@@ -298,10 +311,11 @@ class _ProfileViewState extends State<ProfileView> {
                                           Radius.circular(50.0)),
                                       boxShadow: const [
                                         BoxShadow(
-                                            color: Colors.black38,
-                                            spreadRadius: 0.05,
-                                            blurRadius: 1.1,
-                                            offset: Offset(0.0, 0.8))
+                                          color: Colors.black38,
+                                          spreadRadius: 0.05,
+                                          blurRadius: 4,
+                                          offset: Offset(0.3, 0.10),
+                                        ),
                                       ],
                                     ),
                                   ),

@@ -377,6 +377,9 @@ class _ResultViewState extends State<ResultView> {
                                       ),
                                     )
                                   ],
+                                ),
+                                const SizedBox(
+                                  height: 20,
                                 )
                               ]);
                         }),
@@ -559,20 +562,20 @@ class _ResultViewState extends State<ResultView> {
                                             color: TColor.gray, fontSize: 12),
                                       ),
                                     ),
-
                                     SimpleAnimationProgressBar(
-                          height: 10,
-                          width: media.width - 120,
-                          backgroundColor: TColor.primaryColor1,
-                          foregrondColor: const Color(0xffFFB2B1) ,
-                          ratio: (double.tryParse(iObj["diff_per"].toString()) ?? 0.0) / 100.0 ,
-                          direction: Axis.horizontal,
-                          curve: Curves.fastLinearToSlowEaseIn,
-                          duration: const Duration(seconds: 3),
-                          borderRadius: BorderRadius.circular(5),
-                          
-                        ),
-
+                                      height: 10,
+                                      width: media.width - 120,
+                                      backgroundColor: TColor.primaryColor1,
+                                      foregrondColor: const Color(0xffFFB2B1),
+                                      ratio: (double.tryParse(iObj["diff_per"]
+                                                  .toString()) ??
+                                              0.0) /
+                                          100.0,
+                                      direction: Axis.horizontal,
+                                      curve: Curves.fastLinearToSlowEaseIn,
+                                      duration: const Duration(seconds: 3),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
                                     SizedBox(
                                       width: 25,
                                       child: Text(
@@ -585,10 +588,12 @@ class _ResultViewState extends State<ResultView> {
                                       ),
                                     ),
                                   ],
+                                ),
+                                const SizedBox(
+                                  height: 20,
                                 )
                               ]);
                         }),
-                 
                     RoundButton(
                         title: "Back to Home",
                         onPressed: () {

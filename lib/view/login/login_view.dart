@@ -14,6 +14,13 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   bool isCheck = false;
+  bool showPassword = false;
+  void togglePasswordVisibility() {
+    setState(() {
+      showPassword = !showPassword;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
@@ -55,9 +62,11 @@ class _LoginViewState extends State<LoginView> {
                 RoundTextField(
                   hitText: "Password",
                   icon: "assets/img/lock.png",
-                  obscureText: true,
+                  obscureText: !showPassword,
                   rigtIcon: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        togglePasswordVisibility();
+                      },
                       child: Container(
                           alignment: Alignment.center,
                           width: 20,
@@ -73,12 +82,15 @@ class _LoginViewState extends State<LoginView> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "Forgot your password?",
-                      style: TextStyle(
-                          color: TColor.gray,
-                          fontSize: 10,
-                          decoration: TextDecoration.underline),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: Text(
+                        "Forgot your password?",
+                        style: TextStyle(
+                            color: TColor.secondaryColor2,
+                            fontSize: 12,
+                            decoration: TextDecoration.underline),
+                      ),
                     ),
                   ],
                 ),

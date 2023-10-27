@@ -1,3 +1,5 @@
+import 'package:cp_fitness_app/view/workout_tracker/workour_detail_view.dart';
+import 'package:cp_fitness_app/view/workout_tracker/workout_tracker_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
@@ -169,14 +171,20 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                 trimLines: 4,
                 colorClickableText: TColor.black,
                 trimMode: TrimMode.Line,
-                trimCollapsedText: ' Read More ...',
+                trimCollapsedText: '  Read More',
                 trimExpandedText: ' Read Less',
                 style: TextStyle(
                   color: TColor.gray,
                   fontSize: 12,
                 ),
-                moreStyle:
-                    const TextStyle(fontSize: 12, fontWeight: FontWeight.w700),
+                lessStyle: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black.withOpacity(0.7)),
+                moreStyle: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black.withOpacity(0.7)),
               ),
               const SizedBox(
                 height: 15,
@@ -229,14 +237,15 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                     height: 40,
                     decoration: BoxDecoration(
                       border: Border(
-                        top: BorderSide(color: TColor.gray.withOpacity(0.2), width: 1),
+                        top: BorderSide(
+                            color: TColor.gray.withOpacity(0.2), width: 1),
                         bottom: BorderSide(
                             color: TColor.gray.withOpacity(0.2), width: 1),
                       ),
                     ),
                   ),
                   onSelectedItemChanged: (index) {},
-                  childCount: 60,
+                  childCount: 100,
                   itemBuilder: (context, index) {
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -249,7 +258,7 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                         ),
                         Text(
                           " ${(index + 1) * 15} Calories Burn",
-                          style: TextStyle(color: TColor.gray, fontSize: 10),
+                          style: TextStyle(color: TColor.gray, fontSize: 12),
                         ),
                         Text(
                           " ${index + 1} ",
@@ -267,7 +276,17 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                   },
                 ),
               ),
-              RoundButton(title: "Save", elevation: 0, onPressed: () {}),
+              RoundButton(
+                  title: "Save",
+                  elevation: 0,
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const WorkoutDetailView(
+                                  dObj: {},
+                                )));
+                  }),
               const SizedBox(
                 height: 15,
               ),

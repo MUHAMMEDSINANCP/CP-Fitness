@@ -23,40 +23,44 @@ class _WorkoutScheduleViewState extends State<WorkoutScheduleView> {
   List eventArr = [
     {
       "name": "Ab Workout",
-      "start_time": "25/05/2023 07:30 AM",
+      "start_time": "26/10/2023 07:13 PM",
     },
     {
       "name": "Upperbody Workout",
-      "start_time": "25/05/2023 09:00 AM",
+      "start_time": "25/10/2023 09:00 AM",
     },
     {
       "name": "Lowerbody Workout",
-      "start_time": "25/05/2023 03:00 PM",
+      "start_time": "25/12/2023 10:00 PM",
     },
     {
       "name": "Ab Workout",
-      "start_time": "26/05/2023 07:30 AM",
+      "start_time": "27/10/2023 07:30 AM",
     },
     {
       "name": "Upperbody Workout",
-      "start_time": "26/05/2023 09:00 AM",
+      "start_time": "28/06/2023 09:00 AM",
     },
     {
       "name": "Lowerbody Workout",
-      "start_time": "26/05/2023 03:00 PM",
+      "start_time": "29/05/2023 03:00 PM",
     },
     {
       "name": "Ab Workout",
-      "start_time": "27/05/2023 07:30 AM",
+      "start_time": "30/08/2023 07:30 AM",
     },
     {
       "name": "Upperbody Workout",
-      "start_time": "27/05/2023 09:00 AM",
+      "start_time": "16/09/2023 09:00 AM",
     },
     {
       "name": "Lowerbody Workout",
-      "start_time": "27/05/2023 03:00 PM",
-    }
+      "start_time": "27/02/2024 03:00 PM",
+    },
+    {
+      "name": "Ab Workout",
+      "start_time": "25/12/2023 03:30 PM",
+    },
   ];
 
   List selectDayEventArr = [];
@@ -88,6 +92,9 @@ class _WorkoutScheduleViewState extends State<WorkoutScheduleView> {
 
   @override
   Widget build(BuildContext context) {
+    final DateTime allDatesStartDate = DateTime(2000, 1, 1);
+    final DateTime allDatesEndDate = DateTime(2050, 12, 31);
+
     var media = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -177,8 +184,8 @@ class _WorkoutScheduleViewState extends State<WorkoutScheduleView> {
 
             initialDate: DateTime.now(),
             calendarEventColor: TColor.primaryColor2,
-            firstDate: DateTime.now().subtract(const Duration(days: 140)),
-            lastDate: DateTime.now().add(const Duration(days: 60)),
+            firstDate: allDatesStartDate,
+            lastDate: allDatesEndDate,
 
             onDateSelected: (date) {
               _selectedDateAppBBar = date;
@@ -266,6 +273,8 @@ class _WorkoutScheduleViewState extends State<WorkoutScheduleView> {
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
                                                               .spaceBetween,
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
                                                       children: [
                                                         InkWell(
                                                           onTap: () {
@@ -289,22 +298,27 @@ class _WorkoutScheduleViewState extends State<WorkoutScheduleView> {
                                                                             10)),
                                                             child: Image.asset(
                                                               "assets/img/closed_btn.png",
-                                                              width: 15,
-                                                              height: 15,
+                                                              width: 14,
+                                                              height: 14,
                                                               fit: BoxFit
                                                                   .contain,
                                                             ),
                                                           ),
                                                         ),
-                                                        Text(
-                                                          "Workout Schedule",
-                                                          style: TextStyle(
-                                                              color:
-                                                                  TColor.black,
-                                                              fontSize: 16,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700),
+                                                        const SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Expanded(
+                                                          child: Text(
+                                                            "Workout Schedule",
+                                                            style: TextStyle(
+                                                                color: TColor
+                                                                    .black,
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w700),
+                                                          ),
                                                         ),
                                                         InkWell(
                                                           onTap: () {},
@@ -340,7 +354,8 @@ class _WorkoutScheduleViewState extends State<WorkoutScheduleView> {
                                                     Text(
                                                       sObj["name"].toString(),
                                                       style: TextStyle(
-                                                          color: TColor.black,
+                                                          color: TColor.black
+                                                              .withOpacity(0.7),
                                                           fontSize: 14,
                                                           fontWeight:
                                                               FontWeight.w700),
@@ -369,7 +384,10 @@ class _WorkoutScheduleViewState extends State<WorkoutScheduleView> {
                                                     ),
                                                     RoundButton(
                                                         title: "Mark Done",
-                                                        onPressed: () {}),
+                                                        onPressed: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        }),
                                                   ],
                                                 ),
                                               ),

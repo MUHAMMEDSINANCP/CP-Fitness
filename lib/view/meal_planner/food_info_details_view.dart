@@ -1,3 +1,4 @@
+import 'package:cp_fitness_app/view/meal_planner/meal_schedule_view.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 
@@ -115,7 +116,9 @@ class _FoodInfoDetailsViewState extends State<FoodInfoDetailsView> {
               leadingWidth: 0,
               leading: Container(),
               expandedHeight: media.width * 0.5,
-              flexibleSpace: ClipRect(
+              flexibleSpace:
+                  // Clipect can hide the bottom of the image
+                  ClipRect(
                 child: Stack(
                   alignment: Alignment.bottomCenter,
                   children: [
@@ -298,21 +301,28 @@ class _FoodInfoDetailsViewState extends State<FoodInfoDetailsView> {
                           trimLines: 4,
                           colorClickableText: TColor.black,
                           trimMode: TrimMode.Line,
-                          trimCollapsedText: ' Read More ...',
+                          trimCollapsedText: ' Read More',
                           trimExpandedText: ' Read Less',
                           style: TextStyle(
                             color: TColor.gray,
                             fontSize: 12,
                           ),
-                          moreStyle: const TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.w700),
+                          lessStyle: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.black.withOpacity(0.7)),
+                          moreStyle: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.black.withOpacity(0.7)),
                         ),
                       ),
                       const SizedBox(
                         height: 15,
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 8),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -433,10 +443,17 @@ class _FoodInfoDetailsViewState extends State<FoodInfoDetailsView> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 15),
                         child: RoundButton(
                             title: "Add to ${widget.mObj["name"]} Meal",
-                            onPressed: () {}),
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const MealScheduleView()));
+                            }),
                       ),
                     ],
                   ),

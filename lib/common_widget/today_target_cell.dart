@@ -14,7 +14,7 @@ class TodayTargetCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 70,
+      height: MediaQuery.sizeOf(context).width * 0.25,
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: TColor.white,
@@ -24,12 +24,12 @@ class TodayTargetCell extends StatelessWidget {
         children: [
           Image.asset(
             icon,
-            width: 40,
-            height: 40,
+            width: 30,
+            height: 30,
             fit: BoxFit.contain,
           ),
           const SizedBox(
-            width: 8,
+            width: 10,
           ),
           Expanded(
               child: Column(
@@ -54,11 +54,13 @@ class TodayTargetCell extends StatelessWidget {
                       fontSize: 14),
                 ),
               ),
-              Text(
-                title,
-                style: TextStyle(
-                  color: TColor.black,
-                  fontSize: 12,
+              Expanded(
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    color: TColor.black,
+                    fontSize: 12,
+                  ),
                 ),
               ),
             ],

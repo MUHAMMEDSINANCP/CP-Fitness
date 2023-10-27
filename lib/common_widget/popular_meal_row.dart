@@ -4,7 +4,10 @@ import '../common/colo_extension.dart';
 
 class PopularMealRow extends StatelessWidget {
   final Map mObj;
-  const PopularMealRow({super.key, required this.mObj});
+  final VoidCallback onPressed;
+
+  const PopularMealRow(
+      {super.key, required this.mObj, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +48,7 @@ class PopularMealRow extends StatelessWidget {
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: onPressed,
               icon: Image.asset(
                 "assets/img/next_icon.png",
                 width: 25,

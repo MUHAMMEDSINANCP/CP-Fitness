@@ -6,6 +6,7 @@ import '../../common/colo_extension.dart';
 import '../../common_widget/round_button.dart';
 import '../../common_widget/upcoming_workout_row.dart';
 import '../../common_widget/what_train_row.dart';
+import '../home/activity_tracker_view.dart';
 
 class WorkoutTrackerView extends StatefulWidget {
   const WorkoutTrackerView({super.key});
@@ -37,7 +38,7 @@ class _WorkoutTrackerViewState extends State<WorkoutTrackerView> {
     },
     {
       "image": "assets/img/what_2.png",
-      "title": "Lowebody Workout",
+      "title": "Lowerbody Workout",
       "exercises": "12 Exercises",
       "time": "40mins"
     },
@@ -223,7 +224,7 @@ class _WorkoutTrackerViewState extends State<WorkoutTrackerView> {
           ];
         },
         body: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 40),
           decoration: BoxDecoration(
               color: TColor.white,
               borderRadius: const BorderRadius.only(
@@ -272,16 +273,16 @@ class _WorkoutTrackerViewState extends State<WorkoutTrackerView> {
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
                             onPressed: () {
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) =>
-                              //         const ActivityTrackerView(),
-                              //   ),
-                              // );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ActivityTrackerView(),
+                                ),
+                              );
                             },
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),

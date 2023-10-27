@@ -1,4 +1,4 @@
-import 'package:cp_fitness_app/view/workout_tracker/exercises_stpe_details.dart';
+import 'package:cp_fitness_app/view/workout_tracker/exercises_step_details.dart';
 import 'package:cp_fitness_app/view/workout_tracker/workout_schedule_view.dart';
 import 'package:flutter/material.dart';
 import '../../common/colo_extension.dart';
@@ -350,7 +350,7 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                             );
                           }),
                       SizedBox(
-                        height: media.width * 0.1,
+                        height: media.width * 0.2,
                       ),
                     ],
                   ),
@@ -360,10 +360,14 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      RoundButton(title: "Start Workout", onPressed: () {})
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: RoundButton(
+                            title: "Start Workout", onPressed: () {}),
+                      )
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),

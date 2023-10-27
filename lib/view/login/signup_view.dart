@@ -15,6 +15,13 @@ class SignUpView extends StatefulWidget {
 
 class _SignUpViewState extends State<SignUpView> {
   bool isCheck = false;
+  bool showPassword = false;
+  void togglePasswordVisibility() {
+    setState(() {
+      showPassword = !showPassword;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
@@ -66,20 +73,32 @@ class _SignUpViewState extends State<SignUpView> {
                 RoundTextField(
                   hitText: "Password",
                   icon: "assets/img/lock.png",
-                  obscureText: true,
+                  obscureText: !showPassword,
                   rigtIcon: TextButton(
-                      onPressed: () {},
-                      child: Container(
-                          alignment: Alignment.center,
-                          width: 20,
-                          height: 20,
-                          child: Image.asset(
-                            "assets/img/show_password.png",
-                            width: 20,
-                            height: 20,
-                            fit: BoxFit.contain,
-                            color: TColor.gray,
-                          ))),
+                    onPressed: () {
+                      togglePasswordVisibility();
+                    },
+                    child: Container(
+                        alignment: Alignment.center,
+                        width: 20,
+                        height: 20,
+                        child: showPassword
+                            ? Icon(
+                                Icons.visibility_sharp,
+                                color: TColor.gray,
+                                size: 22,
+                              )
+                            : Image.asset(
+                                "assets/img/show_password.png",
+                                width: 20,
+                                height: 20,
+                                fit: BoxFit.contain,
+                                color: TColor.gray,
+                              )),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
                 Row(
                   // crossAxisAlignment: CrossAxisAlignment.,
@@ -94,26 +113,59 @@ class _SignUpViewState extends State<SignUpView> {
                         isCheck
                             ? Icons.check_box_outlined
                             : Icons.check_box_outline_blank_outlined,
-                        color: TColor.gray,
-                        size: 20,
+                        color: isCheck ? TColor.primaryColor1 : TColor.gray,
+                        size: 21,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: Text(
-                        "By continuing you accept our Privacy Policy and\nTerm of Use",
-                        style: TextStyle(color: TColor.gray, fontSize: 10),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: RichText(
+                          text: TextSpan(
+                            // style: DefaultTextStyle.of(context).style,
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: "By continuing you accept our ",
+                                style: TextStyle(
+                                    color: TColor.gray,
+                                    fontSize: 12,
+                                    decoration: TextDecoration.none),
+                              ),
+                              TextSpan(
+                                text: "Privacy Policy",
+                                style: TextStyle(
+                                    color: TColor.primaryColor1,
+                                    fontSize: 12,
+                                    decoration: TextDecoration.none),
+                              ),
+                              TextSpan(
+                                text: " and ",
+                                style: TextStyle(
+                                    color: TColor.gray,
+                                    fontSize: 12,
+                                    decoration: TextDecoration.none),
+                              ),
+                              TextSpan(
+                                text: "Terms of Use",
+                                style: TextStyle(
+                                    color: TColor.primaryColor1,
+                                    fontSize: 12,
+                                    decoration: TextDecoration.none),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     )
                   ],
                 ),
                 SizedBox(
-                  height: media.width * 0.4,
+                  height: media.width * 0.3,
                 ),
                 RoundButton(
                     title: "Register",
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) =>

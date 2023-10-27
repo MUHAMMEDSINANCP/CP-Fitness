@@ -14,6 +14,9 @@ class CompleteProfileView extends StatefulWidget {
 
 class _CompleteProfileViewState extends State<CompleteProfileView> {
   TextEditingController txtDate = TextEditingController();
+  TextEditingController txtWeight = TextEditingController();
+  TextEditingController txtHeight = TextEditingController();
+  String selectedGender = "Choose Gender"; // Add this variable
 
   @override
   Widget build(BuildContext context) {
@@ -85,12 +88,20 @@ class _CompleteProfileViewState extends State<CompleteProfileView> {
                                             ),
                                           ))
                                       .toList(),
-                                  onChanged: (value) {},
+                                  onChanged: (value) {
+                                    setState(() {
+                                      selectedGender =
+                                          value!; // Update the selected value
+                                    });
+                                  },
                                   isExpanded: true,
                                   hint: Text(
-                                    "Choose Gender",
+                                    selectedGender,
                                     style: TextStyle(
-                                        color: TColor.gray, fontSize: 12),
+                                        color: selectedGender == "Choose Gender"
+                                            ? TColor.gray
+                                            : TColor.secondaryColor1,
+                                        fontSize: 14),
                                   ),
                                 ),
                               ),
@@ -106,7 +117,8 @@ class _CompleteProfileViewState extends State<CompleteProfileView> {
                       ),
                       RoundTextField(
                         controller: txtDate,
-                        hitText: "Date of Birth",
+                        hitText: "Birth Year",
+                        keyboardType: TextInputType.number,
                         icon: "assets/img/date.png",
                       ),
                       SizedBox(
@@ -116,7 +128,8 @@ class _CompleteProfileViewState extends State<CompleteProfileView> {
                         children: [
                           Expanded(
                             child: RoundTextField(
-                              controller: txtDate,
+                              controller: txtWeight,
+                              keyboardType: TextInputType.number,
                               hitText: "Your Weight",
                               icon: "assets/img/weight.png",
                             ),
@@ -149,8 +162,9 @@ class _CompleteProfileViewState extends State<CompleteProfileView> {
                         children: [
                           Expanded(
                             child: RoundTextField(
-                              controller: txtDate,
+                              controller: txtHeight,
                               hitText: "Your Height",
+                              keyboardType: TextInputType.number,
                               icon: "assets/img/hight.png",
                             ),
                           ),
@@ -181,7 +195,7 @@ class _CompleteProfileViewState extends State<CompleteProfileView> {
                       RoundButton(
                           title: "Next >",
                           onPressed: () {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>

@@ -74,7 +74,7 @@ class _ComparisonViewState extends State<ComparisonView> {
             IconTitleNextRow(
                 icon: "assets/img/date.png",
                 title: "Select Month 1",
-                time: "May",
+                time: "June",
                 onPressed: () {},
                 color: TColor.lightGray),
             const SizedBox(
@@ -94,8 +94,8 @@ class _ComparisonViewState extends State<ComparisonView> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => ResultView(
-                        date1: DateTime(2023, 5, 1),
-                        date2: DateTime(2023, 6, 1),
+                        date1: DateTime(2023, 6, 1),
+                        date2: DateTime(2023, 7, 1),
                       ),
                     ),
                   );

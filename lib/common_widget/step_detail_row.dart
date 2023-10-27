@@ -10,7 +10,6 @@ class StepDetailRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -29,7 +28,6 @@ class StepDetailRow extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              
               width: 20,
               height: 20,
               decoration: BoxDecoration(
@@ -38,13 +36,13 @@ class StepDetailRow extends StatelessWidget {
               ),
               alignment: Alignment.center,
               child: Container(
-            
-              width: 18,
-              height: 18,
-              decoration: BoxDecoration(
-                border: Border.all(color: TColor.white, width: 3),
-                borderRadius: BorderRadius.circular(9),
-              ),) ,
+                width: 18,
+                height: 18,
+                decoration: BoxDecoration(
+                  border: Border.all(color: TColor.white, width: 3),
+                  borderRadius: BorderRadius.circular(9),
+                ),
+              ),
             ),
             if (!isLast)
               DottedDashedLine(
@@ -68,6 +66,9 @@ class StepDetailRow extends StatelessWidget {
                   color: TColor.black,
                   fontSize: 14,
                 ),
+              ),
+              const SizedBox(
+                height: 5,
               ),
               Text(
                 sObj["detail"].toString(),

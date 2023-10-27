@@ -99,7 +99,7 @@ class _WhatYourGoalViewState extends State<WhatYourGoalView> {
                   .toList(),
               carouselController: buttonCarouselController,
               options: CarouselOptions(
-                autoPlay: false,
+                autoPlay: true,
                 enlargeCenterPage: true,
                 viewportFraction: 0.7,
                 aspectRatio: 0.74,
@@ -128,17 +128,17 @@ class _WhatYourGoalViewState extends State<WhatYourGoalView> {
                   style: TextStyle(color: TColor.gray, fontSize: 12),
                 ),
                 const Spacer(),
-                SizedBox(
-                  height: media.width * 0.05,
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: RoundButton(
+                      title: "Confirm",
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const WelcomeView()));
+                      }),
                 ),
-                RoundButton(
-                    title: "Confirm",
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const WelcomeView()));
-                    }),
               ],
             ),
           )

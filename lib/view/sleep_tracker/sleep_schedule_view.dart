@@ -270,7 +270,7 @@ class _SleepScheduleViewState extends State<SleepScheduleView> {
                               width: media.width - 80,
                               backgroundColor: Colors.grey.shade100,
                               foregrondColor: Colors.purple,
-                              ratio: 0.96,
+                              ratio: 0.86,
                               direction: Axis.horizontal,
                               curve: Curves.fastLinearToSlowEaseIn,
                               duration: const Duration(seconds: 3),
@@ -281,7 +281,7 @@ class _SleepScheduleViewState extends State<SleepScheduleView> {
                                   end: Alignment.centerRight),
                             ),
                             Text(
-                              "96%",
+                              "86%",
                               style: TextStyle(
                                 color: TColor.black,
                                 fontSize: 12,
@@ -291,6 +291,9 @@ class _SleepScheduleViewState extends State<SleepScheduleView> {
                         ),
                       ],
                     )),
+                const SizedBox(
+                  height: 50,
+                )
               ],
             ),
             SizedBox(

@@ -467,4 +467,6 @@ class CalendarAgendaState extends State<CalendarAgenda>
     _generateDates();
     _selectedDay();
   }
+
+  void scrollToDate(DateTime newDate) {}
 }

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../common/colo_extension.dart';
@@ -9,10 +8,8 @@ class OnBoardingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     var media = MediaQuery.of(context).size;
-    return 
-    
-    SizedBox(
+    var media = MediaQuery.of(context).size;
+    return SizedBox(
       width: media.width,
       height: media.height,
       child: Column(

@@ -36,7 +36,15 @@ class _MealPlannerViewState extends State<MealPlannerView> {
       "number": "120+ Foods"
     },
     {"name": "Lunch", "image": "assets/img/m_4.png", "number": "130+ Foods"},
+    {
+      "name": "Breakfast",
+      "image": "assets/img/m_3.png",
+      "number": "120+ Foods"
+    },
+    {"name": "Lunch", "image": "assets/img/m_4.png", "number": "130+ Foods"},
   ];
+  String selectedValue = "Weekly";
+  String selectval = "Breakfast";
 
   @override
   Widget build(BuildContext context) {
@@ -122,17 +130,26 @@ class _MealPlannerViewState extends State<MealPlannerView> {
                           ),
                           child: DropdownButtonHideUnderline(
                             child: DropdownButton(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(30)),
+                              dropdownColor: TColor.primaryColor1,
+                              value: selectedValue,
                               items: ["Weekly", "Monthly"]
                                   .map((name) => DropdownMenuItem(
                                         value: name,
                                         child: Text(
                                           name,
                                           style: TextStyle(
-                                              color: TColor.gray, fontSize: 14),
+                                              color: TColor.white,
+                                              fontSize: 14),
                                         ),
                                       ))
                                   .toList(),
-                              onChanged: (value) {},
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedValue = value!;
+                                });
+                              },
                               icon:
                                   Icon(Icons.expand_more, color: TColor.white),
                               hint: Text(
@@ -290,7 +307,7 @@ class _MealPlannerViewState extends State<MealPlannerView> {
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
                             onPressed: () {
-                               Navigator.push(
+                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
@@ -325,6 +342,10 @@ class _MealPlannerViewState extends State<MealPlannerView> {
                           ),
                           child: DropdownButtonHideUnderline(
                             child: DropdownButton(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(30)),
+                              dropdownColor: TColor.primaryColor1,
+                              value: selectval,
                               items: [
                                 "Breakfast",
                                 "Lunch",
@@ -337,11 +358,16 @@ class _MealPlannerViewState extends State<MealPlannerView> {
                                         child: Text(
                                           name,
                                           style: TextStyle(
-                                              color: TColor.gray, fontSize: 14),
+                                              color: TColor.white,
+                                              fontSize: 14),
                                         ),
                                       ))
                                   .toList(),
-                              onChanged: (value) {},
+                              onChanged: (val) {
+                                setState(() {
+                                  selectval = val!;
+                                });
+                              },
                               icon:
                                   Icon(Icons.expand_more, color: TColor.white),
                               hint: Text(
@@ -390,10 +416,21 @@ class _MealPlannerViewState extends State<MealPlannerView> {
                   itemBuilder: (context, index) {
                     var fObj = findEatArr[index] as Map? ?? {};
                     return InkWell(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => MealFoodDetailsView(eObj: fObj) ) );
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    MealFoodDetailsView(eObj: fObj)));
                       },
                       child: FindEatCell(
+                        onpressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      MealFoodDetailsView(eObj: fObj)));
+                        },
                         fObj: fObj,
                         index: index,
                       ),

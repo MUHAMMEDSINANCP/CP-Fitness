@@ -61,8 +61,8 @@ class _UpcomingWorkoutRowState extends State<UpcomingWorkoutRow> {
               current: positive,
               values: const [false, true],
               dif: 0.0,
-              indicatorSize: const Size.square(30.0),
-              animationDuration: const Duration(milliseconds: 200),
+              indicatorSize: const Size.square(25.0),
+              animationDuration: const Duration(milliseconds: 400),
               animationCurve: Curves.linear,
               onChanged: (b) => setState(() => positive = b),
               iconBuilder: (context, local, global) {
@@ -72,16 +72,24 @@ class _UpcomingWorkoutRowState extends State<UpcomingWorkoutRow> {
               onTap: () => setState(() => positive = !positive),
               iconsTappable: false,
               wrapperBuilder: (context, global, child) {
+                Color backgroundColor = positive
+                    ? TColor.primaryColor1
+                    : Colors.white; // Choose colors based on the state.
+
                 return Stack(
                   alignment: Alignment.center,
                   children: [
                     Positioned(
-                        left: 10.0,
-                        right: 10.0,
-                        height: 30.0,
+                        left: 7.0,
+                        right: 7.0,
+                        height: 25.0,
                         child: DecoratedBox(
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(colors: TColor.secondaryG),
+                            border: Border.all(color: Colors.black12),
+                            gradient: LinearGradient(colors: [
+                              backgroundColor,
+                              backgroundColor
+                            ]), // Use the chosen color here.
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(50.0)),
                           ),
@@ -91,19 +99,26 @@ class _UpcomingWorkoutRowState extends State<UpcomingWorkoutRow> {
                 );
               },
               foregroundIndicatorBuilder: (context, global) {
+                Color foregroundColor = positive
+                    ? Colors.white
+                    : TColor
+                        .secondaryColor1; // Choose colors based on the state.
+
                 return SizedBox.fromSize(
                   size: const Size(10, 10),
                   child: DecoratedBox(
                     decoration: BoxDecoration(
-                      color: TColor.white,
+                      // color: TColor.white,
+                      color: foregroundColor, // Use the chosen color here.
+
                       borderRadius:
                           const BorderRadius.all(Radius.circular(50.0)),
                       boxShadow: const [
                         BoxShadow(
                             color: Colors.black38,
-                            spreadRadius: 0.05,
-                            blurRadius: 1.1,
-                            offset: Offset(0.0, 0.8))
+                            spreadRadius: 0.08,
+                            blurRadius: 1.5,
+                            offset: Offset(0.3, 0.10))
                       ],
                     ),
                   ),

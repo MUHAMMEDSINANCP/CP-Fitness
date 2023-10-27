@@ -1,3 +1,4 @@
+import 'package:cp_fitness_app/view/photo_progress/result_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../common/colo_extension.dart';
@@ -218,8 +219,7 @@ class _PhotoProgressViewState extends State<PhotoProgressView> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    const ComparisonView(),
+                                builder: (context) => const ComparisonView(),
                               ),
                             );
                           },
@@ -250,7 +250,19 @@ class _PhotoProgressViewState extends State<PhotoProgressView> {
                     ],
                   ),
                 ),
-                ListView.builder(
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ResultView(
+                          date1: DateTime(2023, 5, 1),
+                          date2: DateTime(2023, 6, 1),
+                        ),
+                      ),
+                    );
+                  },
+                  child: ListView.builder(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
@@ -300,11 +312,13 @@ class _PhotoProgressViewState extends State<PhotoProgressView> {
                           ),
                         ],
                       );
-                    }))
+                    }),
+                  ),
+                ),
               ],
             ),
             SizedBox(
-              height: media.width * 0.05,
+              height: media.width * 0.22,
             ),
           ],
         ),
