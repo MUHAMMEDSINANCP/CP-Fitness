@@ -1,4 +1,3 @@
-import 'package:cp_fitness_app/view/main_tab/main_tab_view.dart';
 import 'package:cp_fitness_app/view/on_boarding/started_view.dart';
 import 'package:flutter/material.dart';
 
@@ -15,12 +14,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'CP Fitness App',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-            primaryColor: TColor.primaryColor1, fontFamily: "Poppins"),
-        home: const MainTabView()
-        // StartedView(),
-        );
+      title: 'CP Fitness App',
+      debugShowCheckedModeBanner: false,
+      theme:
+          ThemeData(primaryColor: TColor.primaryColor1, fontFamily: "Poppins"),
+      home: const StartedView(),
+    );
   }
 }
