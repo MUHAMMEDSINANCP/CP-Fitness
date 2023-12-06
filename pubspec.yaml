@@ -41,6 +41,10 @@ dependencies:
   dotted_dashed_line: ^0.0.3
   simple_circular_progress_bar: ^1.0.2
   animated_toggle_switch: ^0.6.2
+  firebase_core: ^2.16.0
+  firebase_auth: ^4.10.0
+  cloud_firestore: ^4.9.2
+  firebase_storage:
   readmore: ^2.1.0
   calendar_agenda:
     path: dev_lib/calendar_agenda/

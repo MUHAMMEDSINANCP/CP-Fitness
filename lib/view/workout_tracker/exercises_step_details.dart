@@ -1,10 +1,9 @@
 import 'package:cp_fitness_app/view/workout_tracker/workour_detail_view.dart';
-import 'package:cp_fitness_app/view/workout_tracker/workout_tracker_view.dart';
-import 'package:flutter/cupertino.dart';
+ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 
-import '../../common/colo_extension.dart';
+import '../../common/color_extension.dart';
 import '../../common_widget/round_button.dart';
 import '../../common_widget/step_detail_row.dart';
 

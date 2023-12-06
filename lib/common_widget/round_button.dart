@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../common/colo_extension.dart';
+import '../common/color_extension.dart';
 
 enum RoundButtonType { bgGradient, bgSGradient, textGradient }
 
@@ -9,16 +9,20 @@ class RoundButton extends StatelessWidget {
   final VoidCallback onPressed;
   final double fontSize;
   final double elevation;
+  final bool isLoading;
+
   final FontWeight fontWeight;
 
-  const RoundButton(
-      {super.key,
-      required this.title,
-      this.type = RoundButtonType.bgGradient,
-      this.fontSize = 16,
-      this.elevation = 1,
-      this.fontWeight = FontWeight.w700,
-      required this.onPressed});
+  const RoundButton({
+    super.key,
+    required this.title,
+    this.type = RoundButtonType.bgGradient,
+    this.fontSize = 16,
+    this.elevation = 1,
+    this.fontWeight = FontWeight.w700,
+    required this.onPressed,
+    this.isLoading = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +44,7 @@ class RoundButton extends StatelessWidget {
                 ]
               : null),
       child: MaterialButton(
-        onPressed: onPressed,
+        onPressed: isLoading ? null : onPressed,
         height: 50,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
         textColor: TColor.primaryColor1,
@@ -53,29 +57,45 @@ class RoundButton extends StatelessWidget {
                 type == RoundButtonType.bgSGradient
             ? Colors.transparent
             : TColor.white,
-        child: type == RoundButtonType.bgGradient ||
-                type == RoundButtonType.bgSGradient
-            ? Text(title,
-                style: TextStyle(
-                    color: TColor.white,
-                    fontSize: fontSize,
-                    fontWeight: fontWeight))
-            : ShaderMask(
-                blendMode: BlendMode.srcIn,
-                shaderCallback: (bounds) {
-                  return LinearGradient(
-                          colors: TColor.primaryG,
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight)
-                      .createShader(
-                          Rect.fromLTRB(0, 0, bounds.width, bounds.height));
-                },
-                child: Text(title,
-                    style: TextStyle(
-                        color: TColor.primaryColor1,
-                        fontSize: fontSize,
-                        fontWeight: fontWeight)),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            if (isLoading)
+              SizedBox(
+                height: 26,
+                width: 26,
+                child: CircularProgressIndicator(
+                  strokeWidth: 5,
+                  color: TColor.white,
+                  backgroundColor: TColor.secondaryColor1,
+                ),
               ),
+            if (!isLoading) // Only show text if not loading
+              type == RoundButtonType.bgGradient ||
+                      type == RoundButtonType.bgSGradient
+                  ? Text(title,
+                      style: TextStyle(
+                          color: TColor.white,
+                          fontSize: fontSize,
+                          fontWeight: fontWeight))
+                  : ShaderMask(
+                      blendMode: BlendMode.srcIn,
+                      shaderCallback: (bounds) {
+                        return LinearGradient(
+                                colors: TColor.primaryG,
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight)
+                            .createShader(Rect.fromLTRB(
+                                0, 0, bounds.width, bounds.height));
+                      },
+                      child: Text(title,
+                          style: TextStyle(
+                              color: TColor.primaryColor1,
+                              fontSize: fontSize,
+                              fontWeight: fontWeight)),
+                    ),
+          ],
+        ),
       ),
     );
   }

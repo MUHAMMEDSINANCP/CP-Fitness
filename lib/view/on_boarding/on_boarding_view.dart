@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../common/colo_extension.dart';
+import '../../common/color_extension.dart';
 import '../../common_widget/on_boarding_page.dart';
 import '../login/signup_view.dart';
 
@@ -17,7 +17,6 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     controller.addListener(() {

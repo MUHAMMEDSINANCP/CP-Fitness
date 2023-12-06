@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_animation_progress_bar/simple_animation_progress_bar.dart';
 
-import '../common/colo_extension.dart';
+import '../common/color_extension.dart';
 import '../view/home/finished_workout_view.dart';
 
 class WorkoutRow extends StatelessWidget {

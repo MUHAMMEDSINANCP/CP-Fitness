@@ -1,8 +1,7 @@
 import 'package:cp_fitness_app/common_widget/round_button.dart';
-import 'package:cp_fitness_app/view/meal_planner/meal_food_details_view.dart';
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 
-import '../common/colo_extension.dart';
+import '../common/color_extension.dart';
 
 class FindEatCell extends StatelessWidget {
   final Map fObj;

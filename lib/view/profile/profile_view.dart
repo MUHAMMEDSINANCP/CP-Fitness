@@ -1,13 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cp_fitness_app/view/on_boarding/started_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../../common/colo_extension.dart';
-import '../../common_widget/round_button.dart';
-import '../../common_widget/setting_row.dart';
+import '../../common/color_extension.dart';
+ import '../../common_widget/setting_row.dart';
 import '../../common_widget/title_subtitle_cell.dart';
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 
-import '../home/activity_tracker_view.dart';
-
+ 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
 
@@ -16,6 +17,32 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
+  String userName = "";
+  String userLastName = "";
+  String email = "";
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUserName();
+  }
+
+  void fetchUserName() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      DocumentSnapshot userSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
+
+      setState(() {
+        userName = userSnapshot['name'];
+        userLastName = userSnapshot['lastName'];
+        email = userSnapshot['email'];
+      });
+    }
+  }
+
   bool positive = false;
 
   List accountArr = [
@@ -82,23 +109,21 @@ class _ProfileViewState extends State<ProfileView> {
               Row(
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadius.circular(30),
-                    child: Image.asset(
-                      "assets/img/u2.png",
-                      width: 50,
-                      height: 50,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+                      borderRadius: BorderRadius.circular(30),
+                      child: const Icon(
+                        Icons.person_3_rounded,
+                        size: 40,
+                      )),
                   const SizedBox(
-                    width: 15,
+                    width: 10,
                   ),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Stefani Wong",
+                          "$userName $userLastName",
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: TColor.black,
                             fontSize: 14,
@@ -106,7 +131,8 @@ class _ProfileViewState extends State<ProfileView> {
                           ),
                         ),
                         Text(
-                          "Lose a Fat Program",
+                          email,
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: TColor.gray,
                             fontSize: 12,
@@ -115,22 +141,86 @@ class _ProfileViewState extends State<ProfileView> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: 70,
-                    height: 25,
-                    child: RoundButton(
-                      title: "Edit",
-                      type: RoundButtonType.bgGradient,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
+                  Transform.scale(
+                    scale: 0.8,
+                    alignment: Alignment.centerRight,
+                    child: MaterialButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ActivityTrackerView(),
-                          ),
+                        // Show an alert dialog to confirm sign out
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title:
+                                  const Center(child: Text('Confirm Sign Out')),
+                              content: RichText(
+                                text: TextSpan(
+                                  style: DefaultTextStyle.of(context).style,
+                                  children: [
+                                    const TextSpan(
+                                      text:
+                                          'Are you sure you want to sign out from ',
+                                    ),
+                                    TextSpan(
+                                      text: ' CP Fitness',
+                                      style: TextStyle(
+                                        color: TColor
+                                            .primaryColor1, // Change text color here
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const TextSpan(
+                                      text: '?',
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              actions: <Widget>[
+                                MaterialButton(
+                                  child: const Text('Cancel'),
+                                  onPressed: () {
+                                    Navigator.of(context)
+                                        .pop(); // Close the dialog
+                                  },
+                                ),
+                                MaterialButton(
+                                  child: const Text(
+                                    'Sign Out',
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    // Sign out the user from Firebase
+                                    FirebaseAuth.instance.signOut().then((_) {
+                                      // Navigate to the login page after successful sign out
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const StartedView())); // Replace '/login' with your actual login route
+                                    }).catchError((error) {
+                                      // Handle sign-out errors if any
+                                      // ignore: avoid_print
+                                      print('Error signing out: $error');
+                                    });
+                                  },
+                                ),
+                              ],
+                            );
+                          },
                         );
                       },
+                      splashColor: Colors.red,
+                      color: TColor.primaryColor2,
+                      child: Text(
+                        "Sign Out",
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white.withOpacity(0.9),
+                        ),
+                      ),
                     ),
                   )
                 ],

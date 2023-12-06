@@ -2,7 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_animation_progress_bar/simple_animation_progress_bar.dart';
 
-import '../../common/colo_extension.dart';
+import '../../common/color_extension.dart';
 import '../../common/common.dart';
 import '../../common_widget/round_button.dart';
 

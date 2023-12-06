@@ -1,7 +1,7 @@
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
 
-import '../common/colo_extension.dart';
+import '../common/color_extension.dart';
 import '../common/common.dart';
 
 class TodaySleepScheduleRow extends StatefulWidget {

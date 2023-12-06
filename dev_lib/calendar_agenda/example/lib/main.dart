@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'dart:math';
 
 import 'package:calendar_agenda/calendar_agenda.dart';

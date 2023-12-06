@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../common/colo_extension.dart';
+import '../common/color_extension.dart';
 
 class SettingRow extends StatelessWidget {
   final String icon;

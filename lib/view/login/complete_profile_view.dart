@@ -1,7 +1,7 @@
 import 'package:cp_fitness_app/view/login/what_your_goal_view.dart';
 import 'package:flutter/material.dart';
 
-import '../../common/colo_extension.dart';
+import '../../common/color_extension.dart';
 import '../../common_widget/round_button.dart';
 import '../../common_widget/round_textfield.dart';
 

@@ -2,7 +2,7 @@ import 'package:cp_fitness_app/view/meal_planner/meal_schedule_view.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 
-import '../../common/colo_extension.dart';
+import '../../common/color_extension.dart';
 import '../../common_widget/food_step_detail_row.dart';
 import '../../common_widget/round_button.dart';
 

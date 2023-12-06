@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../common/colo_extension.dart';
+import '../../common/color_extension.dart';
 import '../../common_widget/meal_category_cell.dart';
 import '../../common_widget/meal_recommed_cell.dart';
 import '../../common_widget/popular_meal_row.dart';
