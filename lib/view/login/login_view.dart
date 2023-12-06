@@ -1,4 +1,4 @@
- import 'package:cp_fitness_app/view/main_tab/main_tab_view.dart';
+import 'package:cp_fitness_app/view/main_tab/main_tab_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../common/color_extension.dart';
