@@ -1,16 +1,17 @@
-# cp_fitness_app
+## CP Fitness
+A fitness app leveraging Firebase and Firebase Authentication, built on clean architecture and Flutter state management. Features workout tracking, nutritional meal planning, sleep monitoring, and progress visualization for a holistic fitness experience.
 
-A new Flutter project.
+### Key Features:
+Workouts & Exercises: Track exercises and monitor progress for effective workout routines.
+Nutritional Meal Planner: Log daily food intake and track nutrition for a balanced diet.
+Sleep Monitoring: Analyze and improve sleep patterns with integrated sleep tracking.
+Progress Visualization: Interactive graphs and charts visualize your fitness journey for motivation.
+### Usage:
+CP Fitness offers comprehensive fitness tracking, including workouts, nutrition, sleep, and progress visualization, empowering users on their fitness journey.
 
-## Getting Started
+### Feedback:
+For any suggestions or feedback, please reach out at cpmuhammedsinan@gmail.com. Your inputs are valuable in enhancing CP Fitness.
 
-This project is a starting point for a Flutter application.
+### Technologies Used:
+Firebase, Firebase Authentication, Clean Architecture, Flutter State Management
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
